@@ -1,0 +1,33 @@
+@startuml Diagrama_Casos_de_Uso
+left to right direction
+skinparam packageStyle rectangle
+
+' Definición de Actores
+actor "Aspirante" as asp
+actor "Reclutador" as rec
+
+' Límite del Sistema
+rectangle "Límite del Sistema" {
+    usecase "Registrar CV" as UC1
+    usecase "Buscar ofertas de empleo" as UC2
+    usecase "Postular vacante" as UC3
+    usecase "Gestionar vacante" as UC4
+    usecase "Evaluar postulaciones" as UC5
+    usecase "Agendar Entrevistas" as UC6
+    usecase "Enviar notificación" as UC7
+}
+
+' Relaciones del Aspirante
+asp --> UC1
+asp --> UC2
+asp --> UC3
+
+' Relaciones del Reclutador
+rec --> UC4
+rec --> UC5
+rec --> UC6
+rec --> UC7
+
+' Relación punteada entre Postular vacante y Gestionar vacante
+UC3 ..> UC4
+@enduml
