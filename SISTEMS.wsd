@@ -1,0 +1,22 @@
+@startuml
+hide footbox
+
+participant "Aspirante" as Aspirante
+participant "Interfaz UI" as UI
+participant "Controlador" as Controlador
+database "Base de datos" as BD
+participant "Servicio de correo" as Correo
+
+' Mensajes 1 a 10 respetando la dirección de las flechas del manuscrito
+Aspirante -> UI : 1. Postular
+UI -> Controlador : 2. Solicitar Postulación
+Controlador -> BD : 3. Consultar previa
+BD -> Controlador : 4. No existe
+Controlador -> BD : 5. Guardar Postulación
+Controlador -> Correo : 6. Confirmación
+Correo -> BD : 7. Notificación
+Controlador -> UI : 8. 200 OK
+UI -> Aspirante : 9. Respuesta exitosa
+UI -> Aspirante : 10. Mensaje de Éxito
+
+@enduml

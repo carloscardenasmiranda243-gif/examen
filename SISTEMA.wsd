@@ -1,0 +1,33 @@
+@startuml
+' Ajuste de disposición vertical
+top to bottom direction
+skinparam packageStyle rectangle
+
+rectangle "Sistema" {
+  
+  usecase "CU1: Registro de perfiles\n[Cargar CV en PDF]" as CU1
+  usecase "CU2: Búsqueda y Postulación" as CU2
+  usecase "CU3: Gestión de Vacantes\n[Alta, Baja, Modificación]" as CU3
+  usecase "CU4: Evaluación de candidatos\n[Agendar Entrevista]" as CU4
+  usecase "CU5: Notificación de Autorización" as CU5
+
+  ' Relaciones entre Casos de Uso (flechas verticales)
+  CU2 -up-> CU1
+  CU3 -up-> CU2
+  CU4 -up-> CU3
+  CU5 -up-> CU4
+
+  ' Actores en la parte inferior
+  node "Aspirante\n(Principal)" as Aspirante
+  node "Reclutador\n(Principal)" as Reclutador
+  node "Servicio de\ncorreo\nexterno\n(Secundario)" as ServicioCorreo
+
+  ' Conexiones de los actores hacia arriba
+  Aspirante -up-> CU2
+  Reclutador -up-> CU5
+  
+  ' Relación include exacta
+  CU4 -right-> ServicioCorreo : <<include>>
+}
+
+@enduml
